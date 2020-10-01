@@ -29,19 +29,30 @@
 
                             <!--音楽再生-->
                             <tr>
+                                {{-- 音楽の名前 --}}
                                 <td class="table-text">
                                     <div>{{ $music->music_name }}</div>
+                                </td>
+                                <!-- 音楽のサムネイルを表示 -->
+                                <td class="table-text">
+                                    <img alt="ロゴ" src="{{ asset('image/' .$music->music_image_path) }}">
+                                </td>
+                                
+                                <!-- 音楽の説明を表示 -->
+                                <td class="table-text">
+                                    <div>{{ $music->music_description }}</div>
                                 </td>
                                 <td>
                                     <audio id="myTune{{$music}}" controls controlsList="nofullscreen nodownload noremoteplayback">
                                         <source  src="{{ asset($music->music_path)}}">
                                     </audio>
                                 </td>
-
-
-
                             <tr>
-
+                            
+                            <thead>
+                                <th>次に再生</th>
+                                <th>&nbsp;</th>
+                            </thead>
                             @foreach ($othermusics as $othermusic)
                                 <tr>
                                     <!-- 音楽のタイトルを表示 -->

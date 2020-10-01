@@ -13,7 +13,7 @@
              <!-- 現在の本 -->
              
          <!--//＠以下に処理を記載する-->
-        @if (count($music) > 0)
+        @if (count($musics) > 0)
             <div class="card-body">
                 <div class="card-body">
                     <table class="table table-striped task-table">
