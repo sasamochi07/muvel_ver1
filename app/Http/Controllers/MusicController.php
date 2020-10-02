@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Music;
+use App\Models\Genre;
+use App\Models\Category;
+use App\Models\Country;
+use App\Models\Area;
+use App\Models\Emotion;
+use App\Models\Provider;
 use Validator;
 
 class MusicController extends Controller
@@ -24,6 +30,7 @@ class MusicController extends Controller
         return view('foryou',['musics' => $musics]);
     }
     ///////////////////////////////////////////////////////////////////////////
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -56,18 +63,29 @@ class MusicController extends Controller
 
     public function show(Music $music)
     {
-        // $music = Music::all();
-        // dd($music);
-        //データの確認;
         $othermusics= Music::where('id','<>',$music->id)->get();
+        
+        return view('musicplay',['music' => $music,'othermusics'=>$othermusics]);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    public function search(Category $category)
+    {
+        $categoryNames=Category::where($category->id)->get();
+        dd(categoryNames);
+        // $othermusics= Music::where('id','<>',$music->id)->get();
 
         // return view('musicplay',[
         //     'music' => $music,
         // ]);
         
-        return view('musicplay',['music' => $music,'othermusics'=>$othermusics]);
+        // return view('discover',['music' => $music,'othermusics'=>$othermusics]);
     }
     /////////////////////////////////////////////////////////////////////////////
+
 
     /**
      * Show the form for editing the specified resource.
