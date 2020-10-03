@@ -23,6 +23,8 @@ Route::get('/musicplay/{music}', 'App\Http\Controllers\MusicController@show');
 
 Route::get('discover/', 'App\Http\Controllers\MusicController@search');
 
+Route::get('list/', 'App\Http\Controllers\MusicController@select');
+
 
 //ログイン機能のやつ
 Auth::routes();

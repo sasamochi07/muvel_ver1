@@ -70,23 +70,36 @@ class MusicController extends Controller
     /////////////////////////////////////////////////////////////////////////////
 
 
+    
+    
     /////////////////////////////////////////////////////////////////////////////
-
-    public function search(Category $category)
+    
+    public function search(Music $musics)
     {
-        $categoryNames=Category::where($category->id)->get();
-        dd(categoryNames);
-        // $othermusics= Music::where('id','<>',$music->id)->get();
-
-        // return view('musicplay',[
-        //     'music' => $music,
-        // ]);
+        // Request $request
+        // dd($request);
+        
+        $musics = Music::inRandomOrder()->paginate(10);
+        return view('discover',['musics' => $musics]);
         
         // return view('discover',['music' => $music,'othermusics'=>$othermusics]);
     }
     /////////////////////////////////////////////////////////////////////////////
+    
+    /////////////////////////////////////////////////////////////////////////////
 
+    public function select(Music $musics)
+    {
+        // $genres=Genre::all()->get();
+        // dd($genre);
+        // $musics = Music::all()->get();
+        // return view('discover',['musics' => $musics]);
 
+        $musics = Music::inRandomOrder()->paginate(10);
+        return view('list',['musics' => $musics]);
+    }
+    /////////////////////////////////////////////////////////////////////////////
+    
     /**
      * Show the form for editing the specified resource.
      *
