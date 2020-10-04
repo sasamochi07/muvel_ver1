@@ -79,8 +79,9 @@ class MusicController extends Controller
         // Request $request
         // dd($request);
         
-        $musics = Music::inRandomOrder()->paginate(10);
-        return view('discover',['musics' => $musics]);
+            //onにする際にはこちらをコメントアウト 
+        // $musics = Music::inRandomOrder()->paginate(10);
+        // return view('discover',['musics' => $musics]);
         
         // return view('discover',['music' => $music,'othermusics'=>$othermusics]);
     }
@@ -88,15 +89,41 @@ class MusicController extends Controller
     
     /////////////////////////////////////////////////////////////////////////////
 
-    public function select(Music $musics)
+    public function select(Request $request)
     {
+            //データを引っ張ってくるSQLを変数に入れておく
+        $query = Music::query();
+
+            //genreのデータををリクエストボディに送信
+        $select1 = $request->input('genre_id');
+
+            // リクエストボディの中にgenre_idがあり、指定なし以外の場合は、それに該当するデータを取得する
+        if ($request->has('genre_id') && $select1 != ('指定なし')) {
+            $query->where('genre_id', $select1)->get();
+        }
+
+            //ユーザを1ページにつき10件ずつ音楽を表示する
+        $data = $query->paginate(10);
+
+            //なんの制限もなければとりあえず、全ての音楽データを取得できていることは確認ずみ
+        // dd($data);
+
+        return view('discover',[
+            'data' => $data
+        ]);
+
+        
+            //-----------------------------------------------------------------
+                //以下はこれまでに間違えたやつなので上述のコードが正解だった場合は削除する
+            //-----------------------------------------------------------------
         // $genres=Genre::all()->get();
         // dd($genre);
         // $musics = Music::all()->get();
         // return view('discover',['musics' => $musics]);
 
-        $musics = Music::inRandomOrder()->paginate(10);
-        return view('list',['musics' => $musics]);
+            //こちらは参考程度に上のやつをコピペしたやつ
+        // $musics = Music::inRandomOrder()->paginate(10);
+        // return view('list',['musics' => $musics]);
     }
     /////////////////////////////////////////////////////////////////////////////
     

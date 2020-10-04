@@ -21,9 +21,9 @@ Route::get('/', 'App\Http\Controllers\MusicController@index');
 
 Route::get('/musicplay/{music}', 'App\Http\Controllers\MusicController@show');
 
-Route::get('discover/', 'App\Http\Controllers\MusicController@search');
+Route::get('discover/', 'App\Http\Controllers\MusicController@select');
 
-Route::get('list/', 'App\Http\Controllers\MusicController@select');
+Route::get('list/', 'App\Http\Controllers\MusicController@select')->name('search');
 
 
 //ログイン機能のやつ
