@@ -10,8 +10,8 @@
         <div class="text-center my-4">
             <h3 class="brown border p-2">音楽検索</h3>
         </div>
-                            {{-- //'search'のURLにアクセスしたらGET通信を開始する --}}
-        {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
+                            {{-- //'select'のURLにアクセスしたらGET通信を開始する --}}
+        {!! Form::open(['route' => 'select', 'method' => 'get']) !!}
                                 {{-- //自由検索のところ --}}
             {{-- <div class="form-group">
                 {!! Form::label('text', 'ユーザ名:') !!}
@@ -25,7 +25,7 @@
                                 {{-- //プルダウン式のフォームのところ（好きな先方のところ） --}}
             <div class="form-group">
                 {!! Form::label('genre_id', 'ジャンル:') !!}
-                {!! Form::select('genre_id', ['指定なし' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
+                {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
             </div>
                                 {{-- //送信ボタンで上記の内容を送信する --}}
             {!! Form::submit('検索', ['class' => 'btn btn-primary btn-block']) !!}
@@ -36,7 +36,7 @@
                 {{-- //検索結果の一覧を表示する --}}
     <div class="col-sm-8">
         <div class="text-center my-4">
-            <h3 class="brown p-2">ユーザ一覧</h3>
+            <h3 class="brown p-2">音楽一覧</h3>
         </div>
 
         <div class="container">
@@ -44,18 +44,19 @@
                                 {{-- //検索ボタン押下時に発動する --}}
                                 {{-- //データの動きを確認する --}}
             @if(!empty($data))
-                <div class="my-2 p-0">
-                    <div class="row  border-bottom text-center">
+                {{-- <div class="my-2 p-0">
+                    <div class="row  border-bottom text-center"> --}}
                         {{-- <div class="col-sm-4">
                             <p>ユーザ名</p>
                         </div>
-                        <div class="col-sm-4">
+                        --}}
+                        {{-- <div class="col-sm-4">
                             <p>棋力</p>
-                        </div> --}}
-                        <div class="col-sm-4">
+                        </div>  --}}
+                        {{-- <div class="col-sm-4">
                             <p>ジャンル</p>
                         </div>
-                    </div>
+                    </div> --}}
 {{-- //検索条件に一致したユーザを表示します --}}
                     @foreach($data as $item)
                             <div class="row py-2 border-bottom text-center">
@@ -66,7 +67,12 @@
                                     {{ $item->strength }}
                                 </div> --}}
                                 <div class="col-sm-4">
-                                    {{ $item->tactics }}
+                                    {{ $item->music_name }}
+                                    <img src="{{ asset('image/' .$item->music_image_path) }}" alt="hoge.png"> 
+                                    <audio id="myTune{{$item}}" controls controlsList="nofullscreen nodownload noremoteplayback">
+                                        <source  src="{{ asset($item->music_path)}}">
+                                    </audio>
+                                    {{ $item->music_description }}
                                 </div>
                             </div>
                     @endforeach
