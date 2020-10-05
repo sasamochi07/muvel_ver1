@@ -76,14 +76,7 @@ class MusicController extends Controller
     
     public function search(Music $musics)
     {
-        // Request $request
-        // dd($request);
-        
-            //onにする際にはこちらをコメントアウト 
-        // $musics = Music::inRandomOrder()->paginate(10);
-        // return view('discover',['musics' => $musics]);
-        
-        // return view('discover',['music' => $music,'othermusics'=>$othermusics]);
+      
     }
     /////////////////////////////////////////////////////////////////////////////
     
@@ -91,39 +84,32 @@ class MusicController extends Controller
 
     public function select(Request $request)
     {
-            //データを引っ張ってくるSQLを変数に入れておく
+        $musics = Music::all();
+            
         $query = Music::query();
 
             //genreのデータををリクエストボディに送信
-        $select1 = $request->input('genre_id');
+        $select_genre = $request->input('genre_id');
+        $select_category = $request->input('category_id');
 
             // リクエストボディの中にgenre_idがあり、指定なし以外の場合は、それに該当するデータを取得する
-        if ($request->has('genre_id') && $select1 != ('指定なし')) {
-            $query->where('genre_id', $select1)->get();
+            // 現状両方の条件に合致した音楽しか取得できない
+            // and条件でなくor条件で音楽データを取得したい
+        if ($request->has('genre_id') && $select_genre != ('指定なし')) {
+            $query->where('genre_id', $select_genre)->get();
         }
 
-            //ユーザを1ページにつき10件ずつ音楽を表示する
+        if ($request->has('category_id') && $select_category != ('指定なし')) {
+            $query->where('category_id', $select_category)->get();
+        }
+
         $data = $query->paginate(10);
 
-            //なんの制限もなければとりあえず、全ての音楽データを取得できていることは確認ずみ
-        // dd($data);
-
+            // $musicsを渡したい
         return view('discover',[
-            'data' => $data
+            'data' => $data,
+            // 'musics'=>$musics
         ]);
-
-        
-            //-----------------------------------------------------------------
-                //以下はこれまでに間違えたやつなので上述のコードが正解だった場合は削除する
-            //-----------------------------------------------------------------
-        // $genres=Genre::all()->get();
-        // dd($genre);
-        // $musics = Music::all()->get();
-        // return view('discover',['musics' => $musics]);
-
-            //こちらは参考程度に上のやつをコピペしたやつ
-        // $musics = Music::inRandomOrder()->paginate(10);
-        // return view('list',['musics' => $musics]);
     }
     /////////////////////////////////////////////////////////////////////////////
     

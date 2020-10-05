@@ -26,6 +26,8 @@
             <div class="form-group">
                 {!! Form::label('genre_id', 'ジャンル:') !!}
                 {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
+                {!! Form::label('category_id', 'ジャンル:') !!}
+                {!! Form::select('category_id', ['' => '指定なし'] + Config::get('category.kategori') , '指定なし') !!}
             </div>
                                 {{-- //送信ボタンで上記の内容を送信する --}}
             {!! Form::submit('検索', ['class' => 'btn btn-primary btn-block']) !!}
@@ -60,12 +62,8 @@
 {{-- //検索条件に一致したユーザを表示します --}}
                     @foreach($data as $item)
                             <div class="row py-2 border-bottom text-center">
-                                {{-- <div class="col-sm-4">
-                                    <a href="">{{ $item->name }}</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    {{ $item->strength }}
-                                </div> --}}
+                                
+                                {{-- 検索結果に合致する音楽の表示 --}}
                                 <div class="col-sm-4">
                                     {{ $item->music_name }}
                                     <img src="{{ asset('image/' .$item->music_image_path) }}" alt="hoge.png"> 
@@ -73,6 +71,13 @@
                                         <source  src="{{ asset($item->music_path)}}">
                                     </audio>
                                     {{ $item->music_description }}
+
+                                    {{-- 各音楽から音楽再生ページに遷移させたいが、 $musicsが上手く渡せてない --}}
+                                    {{-- <form action="{{ url('/musicplay' .'/' .$musics->id) }}" method="GET"> {{ csrf_field() }}
+                                        <button type="submit" class="btn">
+                                            To Playing Page
+                                        </button>
+                                    </form>     --}}
                                 </div>
                             </div>
                     @endforeach
