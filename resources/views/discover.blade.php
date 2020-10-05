@@ -10,17 +10,19 @@
         </div>
 
         <tbody>
-             {!! Form::open(['route' => 'select', 'method' => 'get']) !!}
+            {!! Form::open(['route' => 'select', 'method' => 'get']) !!}
 
-            <td class="form-group">
-                {!! Form::label('genre_id', 'ジャンル:') !!}
-                {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
-                {!! Form::label('category_id', 'ジャンル:') !!}
-                {!! Form::select('category_id', ['' => '指定なし'] + Config::get('category.kategori') , '指定なし') !!}
-            </td>
-                                {{-- //送信ボタンで上記の内容を送信する --}}
-            {!! Form::submit('検索', ['class' => 'btn btn-primary btn-block']) !!}
-                                {{-- //ここでフォームの終了タグ --}}
+                <td class="form-group">
+                    {!! Form::label('genre_id', 'ジャンル:') !!}
+                    {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
+                </td>
+                <td class="form-group">
+                    {!! Form::label('category_id', 'カテゴリー:') !!}
+                    {!! Form::select('category_id', ['' => '指定なし'] + Config::get('category.kategori') , '指定なし') !!}
+                </td>
+                <td class="form-group">               
+                     {!! Form::submit('検索', ['class' => 'btn btn-primary btn-block']) !!}
+                </td>
             {!! Form::close() !!}
         <tbody>
     </div>
