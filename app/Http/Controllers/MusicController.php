@@ -93,13 +93,23 @@ class MusicController extends Controller
 
             //genreのデータををリクエストボディに送信
         $select_emotion = $request->input('emotion_id');
+        $select_country = $request->input('country_id');
+        $select_area = $request->input('area_id');
         $select_genre = $request->input('genre_id');
         $select_category = $request->input('category_id');
 
-        if ($request->has('emotion_id') && $select_genre != ('指定なし')) {
+        if ($request->has('emotion_id') && $select_emotion != ('指定なし')) {
             $query->orWhere('emotion_id', $select_emotion)->get();
         }
         
+        if ($request->has('country_id') && $select_country != ('指定なし')) {
+            $query->orWhere('country_id', $select_country)->get();
+        }
+
+        if ($request->has('area_id') && $select_area != ('指定なし')) {
+            $query->orWhere('area_id', $select_area)->get();
+        }
+
         if ($request->has('genre_id') && $select_genre != ('指定なし')) {
             $query->orWhere('genre_id', $select_genre)->get();
         }
@@ -107,6 +117,8 @@ class MusicController extends Controller
         if ($request->has('category_id') && $select_category != ('指定なし')) {
             $query->orWhere('category_id', $select_category)->get();
         }
+
+        
 
         $data = $query->paginate(10);
 

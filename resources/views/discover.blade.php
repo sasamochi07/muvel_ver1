@@ -16,6 +16,14 @@
                     {!! Form::select('emotion_id', ['' => '指定なし'] + Config::get('emotion.kanjo') , '指定なし') !!}
                 </td>
                 <td class="form-group">
+                    {!! Form::label('country_id', '国:') !!}
+                    {!! Form::select('country_id', ['' => '指定なし'] + Config::get('country.kuni') , '指定なし') !!}
+                </td>
+                <td class="form-group">
+                    {!! Form::label('area_id', '地域:') !!}
+                    {!! Form::select('area_id', ['' => '指定なし'] + Config::get('area.eria') , '指定なし') !!}
+                </td>
+                <td class="form-group">
                     {!! Form::label('genre_id', 'ジャンル:') !!}
                     {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}
                 </td>
