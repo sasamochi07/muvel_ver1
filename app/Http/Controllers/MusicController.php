@@ -49,7 +49,10 @@ class MusicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post -> music_name = $request -> music_name;
+        $post -> music_name;
+        $post -> music_name;
     }
 
     /**
@@ -96,11 +99,11 @@ class MusicController extends Controller
             // 現状両方の条件に合致した音楽しか取得できない
             // and条件でなくor条件で音楽データを取得したい
         if ($request->has('genre_id') && $select_genre != ('指定なし')) {
-            $query->where('genre_id', $select_genre)->get();
+            $query->orWhere('genre_id', $select_genre)->get();
         }
 
         if ($request->has('category_id') && $select_category != ('指定なし')) {
-            $query->where('category_id', $select_category)->get();
+            $query->orWhere('category_id', $select_category)->get();
         }
 
         $data = $query->paginate(10);
