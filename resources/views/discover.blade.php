@@ -25,9 +25,7 @@
         </div>
 
         <div class="container">
-            <!--検索ボタンが押された時に表示されます-->
-                                {{-- //検索ボタン押下時に発動する --}}
-                                {{-- //データの動きを確認する --}}
+           
             @if(!empty($data))
                
                     @foreach($data as $item)

@@ -4,7 +4,9 @@
     <!-- Bootstrapの定形コード… -->
     <div class="card-body"> 
         <div class="card-title">
-            音楽一覧
+            <a href="http://localhost:8080/discover">
+                Discover
+            </a>
         </div>
         <!-- バリデーションエラーの表示に使用-->
     	@include('common.errors')
