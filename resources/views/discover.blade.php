@@ -11,7 +11,10 @@
 
         <tbody>
             {!! Form::open(['route' => 'select', 'method' => 'get']) !!}
-
+                <td class="form-group">
+                    {!! Form::label('emotion_id', '感情:') !!}
+                    {!! Form::select('emotion_id', ['' => '指定なし'] + Config::get('emotion.kanjo') , '指定なし') !!}
+                </td>
                 <td class="form-group">
                     {!! Form::label('genre_id', 'ジャンル:') !!}
                     {!! Form::select('genre_id', ['' => '指定なし'] + Config::get('genre.janru') , '指定なし') !!}

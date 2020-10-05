@@ -87,17 +87,19 @@ class MusicController extends Controller
 
     public function select(Request $request)
     {
-        $musics = Music::all();
+        // $musics = Music::all();
             
         $query = Music::query();
 
             //genreのデータををリクエストボディに送信
+        $select_emotion = $request->input('emotion_id');
         $select_genre = $request->input('genre_id');
         $select_category = $request->input('category_id');
 
-            // リクエストボディの中にgenre_idがあり、指定なし以外の場合は、それに該当するデータを取得する
-            // 現状両方の条件に合致した音楽しか取得できない
-            // and条件でなくor条件で音楽データを取得したい
+        if ($request->has('emotion_id') && $select_genre != ('指定なし')) {
+            $query->orWhere('emotion_id', $select_emotion)->get();
+        }
+        
         if ($request->has('genre_id') && $select_genre != ('指定なし')) {
             $query->orWhere('genre_id', $select_genre)->get();
         }
