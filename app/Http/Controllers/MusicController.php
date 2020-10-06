@@ -118,8 +118,6 @@ class MusicController extends Controller
             $query->orWhere('category_id', $select_category)->get();
         }
 
-        
-
         $data = $query->paginate(10);
 
             // $musicsを渡したい
