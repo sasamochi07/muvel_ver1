@@ -24,7 +24,8 @@ class MusicController extends Controller
     public function index()
     {
             // 音楽をランダムに表示させる
-        $musics = Music::inRandomOrder()->paginate(10);
+        // $musics = Music::inRandomOrder()->paginate(10);
+        $musics = Music::all();
             //データの確認
             // dd($music->toArray());
         return view('foryou',['musics' => $musics]);

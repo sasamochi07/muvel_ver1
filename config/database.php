@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Str;
-
+// use \Illuminate\Support\Facades\Log;
+// Log::debug(env('DB_SOCKET'));
+dd(env('DB_SOCKET'));
 return [
 
     /*
