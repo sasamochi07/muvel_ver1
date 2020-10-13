@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Str;
+
+// socketの在かを確認する
 // use \Illuminate\Support\Facades\Log;
 // Log::debug(env('DB_SOCKET'));
-dd(env('DB_SOCKET'));
+// dd(env('DB_SOCKET'));
 return [
 
     /*

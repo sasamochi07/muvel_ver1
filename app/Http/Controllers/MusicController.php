@@ -23,9 +23,9 @@ class MusicController extends Controller
     /////////////////////////////////////////////////////////////////////////////
     public function index()
     {
+        // dd(config('database.connections.mysql.unix_socket'));
             // 音楽をランダムに表示させる
-        // $musics = Music::inRandomOrder()->paginate(10);
-        $musics = Music::all();
+        $musics = Music::inRandomOrder()->paginate(10);
             //データの確認
             // dd($music->toArray());
         return view('foryou',['musics' => $musics]);
