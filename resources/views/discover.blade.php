@@ -39,8 +39,7 @@
     </div>
 
                 {{-- //検索結果の一覧を表示する --}}
-
-    @if(!empty($data))
+                
     <div class="col-sm-8">
         <div class="text-center my-4">
             <h3 class="brown p-2">音楽一覧</h3>
