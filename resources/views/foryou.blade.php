@@ -45,14 +45,14 @@
                                         <div>{{ $music->music_description }}</div>
                                     </td>
 
-                                    <td>
+                                    <td class="table-text">
                                         <audio id="myTune{{$music}}" controls controlsList="nofullscreen nodownload noremoteplayback">
                                             <source  src="{{ asset($music->music_path)}}">
                                         </audio>
                                     </td>
                                  
                                     <!--音楽再生ページに遷移するボタン-->
-                                    <td>
+                                    <td class="table-text">
                                         <form action="{{ url('/musicplay' .'/' .$music->id) }}" method="GET"> {{ csrf_field() }}
                                             <button type="submit" class="btn">
                                                 To Playing Page

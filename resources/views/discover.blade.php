@@ -39,6 +39,8 @@
     </div>
 
                 {{-- //検索結果の一覧を表示する --}}
+
+    @if(!empty($data))
     <div class="col-sm-8">
         <div class="text-center my-4">
             <h3 class="brown p-2">音楽一覧</h3>
@@ -50,18 +52,18 @@
                 @foreach($data as $item)
 
                     <tr>
-                        <td>
+                        <td class="table-text">
                             {{ $item->music_name }}
                         </td>
-                        <td>
-                            <img src="{{ asset('image/' .$item->music_image_path) }}" alt="hoge.png"> 
+                        <td class="table-text">
+                            <img src="{{ asset('image/' .$item->music_image_path) }}" alt="hoge.png" width="193" height="130"> 
                         </td>
-                        <td>
+                        <td class="table-text">
                             <audio id="myTune{{$item}}" controls controlsList="nofullscreen nodownload noremoteplayback">
                                 <source  src="{{ asset($item->music_path)}}">
                             </audio>
                         </td>
-                        <td>
+                        <td class="table-text">
                             {{ $item->music_description }}
                         </td>
                         {{-- 各音楽から音楽再生ページに遷移させたいが、 $musicsが上手く渡せてない --}}
@@ -83,3 +85,4 @@
 </div>
 
 
+@endsection
