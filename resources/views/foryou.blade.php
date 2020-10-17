@@ -37,7 +37,7 @@
                                     <!--dd($music);-->
                                     <!-- 音楽のサムネイルを表示 -->
                                     <td class="table-text">
-                                        <img alt="ロゴ" src="{{ asset('image/' .$music->music_image_path) }}">
+                                        <img alt="ロゴ" src="{{ asset('image/' .$music->music_image_path) }}" width="193" height="130">
                                     </td>
                                     
                                     <!-- 音楽の説明を表示 -->

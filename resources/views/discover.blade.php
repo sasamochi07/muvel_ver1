@@ -74,7 +74,7 @@
                             </form>  
                         </td> --}}
                     </tr>
-
+                    
                 @endforeach
                 {{ $data->appends(request()->input())->render('pagination::bootstrap-4') }}
            
